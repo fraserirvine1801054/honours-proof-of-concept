@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="indexstyle.css">
+    </head>
+    <body>
+        <h1>Fraser Irvine (1801054) Honours Project proof of concept</h1>
+        <br>
+        <div id="indexIntro">
+            This is the main page where you can search for datasets
+        </div>
+        <div id="searchBar">
+            <p>Search options:</p>
+            <form id="searchForm" class="form">
+                <input type="text" name="searchTerms" id="searchTerms">
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+
+        <script>
+            //guide for this from: https://youtu.be/I_fVO_NzT2g
+            const searchForm = document.getElementById("searchForm");
+
+            searchForm.addEventListener("submit", (e) => {
+                e.preventDefault();
+                //simple debug for form submission
+                console.log("search form has been submitted");
+
+                const request = new XMLHttpRequest();
+                request.open("post", "search.php");
+                request.onload = function () {
+                    console.log(request.responseText);
+                }
+                request.send(new FormData(searchForm));
+            });
+        </script>
+
+    </body>
+</html>
