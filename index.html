@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="indexstyle.css">
+        <!--can't figure out how to make external CSS work so i'll just use in head-->
+        <!-- <link rel="stylesheet" type="text/css" href="indexstyle.css"> -->
+        <style>
+            html {
+                font-family: sans-serif;
+            }
+        </style>
     </head>
     <body>
         <h1>Fraser Irvine (1801054) Honours Project proof of concept</h1>
@@ -12,7 +18,15 @@
         <div id="searchBar">
             <p>Search options:</p>
             <form id="searchForm" class="form">
-                <input type="text" name="searchTerms" id="searchTerms">
+                <!-- search terms will allow users to search by keywords or by location-->
+                <label for="searchTerms">Search by Keywords/ Location</label><br>
+                <input type="text" name="searchTerms" id="searchTerms"><br><br>
+                <!-- filtering by data type if its geodata or CSV data-->
+                <label>Show only:</label><br>
+                <input type="checkbox" id="dataCSV" name="dataCSV" value="CSV">
+                <label for="dataCSV">CSV (Comma Separated Values)</label><br>
+                <input type="checkbox" id="dataGEO" name="dataGEO" value="GEO">
+                <label for="dataGEO">Geographical</label><br>
                 <input type="submit" value="Submit">
             </form>
         </div>
