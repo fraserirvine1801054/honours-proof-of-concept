@@ -17,23 +17,5 @@
             </form>
         </div>
 
-        <script>
-            //guide for this from: https://youtu.be/I_fVO_NzT2g
-            const searchForm = document.getElementById("searchForm");
-
-            searchForm.addEventListener("submit", (e) => {
-                e.preventDefault();
-                //simple debug for form submission
-                console.log("search form has been submitted");
-
-                const request = new XMLHttpRequest();
-                request.open("post", "search.php");
-                request.onload = function () {
-                    console.log(request.responseText);
-                }
-                request.send(new FormData(searchForm));
-            });
-        </script>
-
     </body>
 </html>
