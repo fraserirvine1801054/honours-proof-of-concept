@@ -33,6 +33,8 @@ app.get('/search', function(req,res){
 app.post('/search', function(req,res){
     console.log("search has been performed");
     console.log(req.body);
+    
+    
     //return res.redirect('/');
 });
 
