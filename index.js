@@ -13,38 +13,45 @@ var port = PORT;
 
 //render the page in ejs
 app.get('/', function(req,res){
-    res.render('index.ejs');
+        res.render('index.ejs');
 });
 
-
-
-/**
-//old code for rendering page in .html
-app.get('/', function(req,res){
-    res.sendFile(__dirname + '/index.html');
-});
+//get query
 /*
-
-//getting information from the search form
-router.post('/search', function(req,res,next) {
-    console.log(req.body);
-});
-
-//getting information from search form (old code)
-/**
-app.post('/search', function(req,res){
-    console.log("search has been performed");
+app.get('/search', function(req,res){
+    var queryKeywords = req.query.searchTerms;
+    var queryDataType = req.query.dataType
+    //debug
+    console.log("DEBUG:\n" + 
+                "SearchTerms: " + queryKeywords + "\n" +
+                "dataType: " + queryDataType
+    );
 });
 */
+
+//getting information from search form (old code)
+app.post('/search', function(req,res){
+    console.log("search has been performed");
+    console.log(req.body);
+    //return res.redirect('/');
+});
+
 
 app.listen(PORT);
 console.log('Express server running at http://127.0.0.1:'.PORT);
 
 
+/**
+ * Resources used:
+ * https://stackoverflow.com/questions/6912584/how-to-get-get-query-string-variables-in-express-js-on-node-js
+ * https://stackoverflow.com/questions/20089582/how-to-get-a-url-parameter-in-express
+ * 
+ */
 
 
 
-//old code being commented out
+
+// ===== old code being commented out =====
 /*const http = require('http');
 const fs = require('fs');
 const express = require('express');

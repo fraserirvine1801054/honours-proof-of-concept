@@ -23,12 +23,21 @@
                 <input type="text" name="searchTerms" id="searchTerms"><br><br>
                 <!-- filtering by data type if its geodata or CSV data-->
                 <label>Show:</label><br>
-                <input type="checkbox" id="dataCSV" name="dataCSV" value="CSV">
+                <input type="radio" id="dataCSV" name="dataType" value="CSV">
                 <label for="dataCSV">CSV (Comma Separated Values)</label><br>
-                <input type="checkbox" id="dataGEO" name="dataGEO" value="GEO">
+                <input type="radio" id="dataGEO" name="dataType" value="GEO">
                 <label for="dataGEO">Geographical</label><br>
                 <input type="submit" value="Submit">
             </form>
+        </div>
+        <br>
+        <hr>
+        <br>
+
+        <div id="searchReturns">
+            <!-- Displays search returns in table format -->
+
+
         </div>
 
     </body>
