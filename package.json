@@ -1,0 +1,22 @@
+{
+  "name": "honours-proof-of-concept",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://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@github.com/fraserirvine1801054/honours-proof-of-concept.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fraserirvine1801054/honours-proof-of-concept/issues"
+  },
+  "homepage": "https://github.com/fraserirvine1801054/honours-proof-of-concept#readme",
+  "dependencies": {
+    "express": "^4.17.2"
+  }
+}
