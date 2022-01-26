@@ -29,19 +29,37 @@ app.get('/search', function(req,res){
 });
 */
 
-//getting information from search form (old code)
+//recieve form data
 app.post('/search', function(req,res){
     console.log("search has been performed");
     console.log(req.body);
     
-    
+    //run python script to query data.gov.uk api
+    let {PythonShell} = require('python-shell');
+
+    let options = {
+        mode: 'text',
+        pythonPath: '',
+        pythonOptions: ['-u'],
+        scriptPath: 'pythonscripts',
+        args: [JSON.stringify(req.body)]
+    };
+
+    PythonShell.run('query_api.py', options, function(err, results){
+        if (err) throw err;
+        console.log('results: %j', results);
+    });
+
+    /*
+    pyshell.on('message', function(message){
+        console.log(message);
+    });
+    */
     //return res.redirect('/');
 });
 
-
 app.listen(PORT);
 console.log('Express server running at http://127.0.0.1:'.PORT);
-
 
 /**
  * Resources used:
@@ -49,9 +67,6 @@ console.log('Express server running at http://127.0.0.1:'.PORT);
  * https://stackoverflow.com/questions/20089582/how-to-get-a-url-parameter-in-express
  * 
  */
-
-
-
 
 // ===== old code being commented out =====
 /*const http = require('http');
