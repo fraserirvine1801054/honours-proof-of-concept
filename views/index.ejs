@@ -28,7 +28,7 @@
                 <input type="radio" id="dataGEO" name="dataType" value="GEO">
                 <label for="dataGEO">Geographical</label><br>
                 <input type="radio" id="dataALL" name="dataType" value="ALL">
-                <label for="dataALL">Show All</label>
+                <label for="dataALL">Show All</label><br>
                 <input type="submit" value="Submit">
             </form>
         </div>
@@ -51,6 +51,7 @@
                                 <li><%= result.date_created %></li>
                                 <li><%= result.date_modified %></li>
                                 <li><%= result.licence %></li>
+                                <li><%= result.data_type %></li>
                                 <li><%= result.data_url %></li>
                             </ul>
                         </td>

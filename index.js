@@ -15,9 +15,19 @@ var port = PORT;
 //render the page in ejs
 app.get('/', function(req,res){
 
+    //roundabout way to render the main page with empty results
+    var results = [
+        {
+            "title" : "",
+            "date_created" : "",
+            "date_modified" : "",
+            "licence" : "",
+            "data_type" : "",
+            "data_url" : ""
+        }
+    ];
 
-
-        res.render('index.ejs');
+    res.render('index.ejs', {results : results});
 });
 
 //get query
@@ -46,7 +56,7 @@ app.post('/search', function(req,res){
     var apiResponse;
 
     //initialising empty json object to be displayed to the main page
-    var results = {};
+    var results = [];
 
     /**
      * upon looking at CKAN's documentation, I don't think this is how the API request is supposed to work.
@@ -63,21 +73,23 @@ app.post('/search', function(req,res){
             console.log(apiResponse);
 
             //testing javascript json
-            console.log(apiResponse.success);
-            console.log(apiResponse.result.results[0].resources[0].format);
+            //console.log(apiResponse.success);
+            //console.log(apiResponse.result.results[0].resources[0].format);
 
             //very roundabout way to filter JSON. May change in the future
 
             switch(dataType){
                 case "CSV":
                     for (var i = 0; i < apiResponse.result.results.length; i++) {
-                        for (var j = 0; i < apiResponse.result.results[i].resources.length; i++) {
-                            if (apiResponse.result.results[i].resources[j] === "CSV"){
+                        for (var j = 0; j < apiResponse.result.results[i].resources.length; j++) {
+
+                            if (apiResponse.result.results[i].resources[j].format === "CSV"){
                                 var myObj = {
                                     "title" : `Title: ${apiResponse.result.results[i].title}`,
                                     "date_created" : `Date Created: ${apiResponse.result.results[i].metadata_created}`,
                                     "date_modified" : `Date Modified: ${apiResponse.result.results[i].metadata_modified}`,
                                     "licence" : `Licence: ${apiResponse.result.results[i].license_title}`,
+                                    "data_type" : `Data Type: CSV`,
                                     "data_url" : `Data URL: ${apiResponse.result.results[i].resources[j].url}`
                                 };
                                 results.push(myObj);
@@ -93,12 +105,20 @@ app.post('/search', function(req,res){
                     break;
                 case "ALL":
                     for (var i = 0; i < apiResponse.result.results.length; i++) {
-                        for (var j = 0; i < apiResponse.result.results[i].resources.length; i++) {
+                        for (var j = 0; j < apiResponse.result.results[i].resources.length; j++) {
+                            var jsonFormatValue;
+                            if (typeof apiResponse.result.results[i].resources[j].format === 'undefined'){
+                                jsonFormatValue = "undefined";
+                            } else {
+                                jsonFormatValue = apiResponse.result.results[i].resources[j].format;
+                            }
+                            
                             var myObj = {
                                 "title" : `Title: ${apiResponse.result.results[i].title}`,
                                 "date_created" : `Date Created: ${apiResponse.result.results[i].metadata_created}`,
                                 "date_modified" : `Date Modified: ${apiResponse.result.results[i].metadata_modified}`,
                                 "licence" : `Licence: ${apiResponse.result.results[i].license_title}`,
+                                "data_type" : `Data Type: ${jsonFormatValue}`,
                                 "data_url" : `Data URL: ${apiResponse.result.results[i].resources[j].url}`
                             };
                             results.push(myObj);
