@@ -2,6 +2,7 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
+const { json } = require('body-parser');
 app.use(bodyParser.urlencoded({extended: true}));
 var router = express.Router();
 
@@ -37,23 +38,40 @@ app.post('/search', function(req,res){
     //extract object into individual strings
     var searchTerms = req.body.searchTerms;
     var dataType = req.body.dataType;
+    
+    var apiResponse;
 
     //AJAX test
     var XMLHttpRequest = require('xhr2');
     let request = new XMLHttpRequest();
-    request.open("GET", "https://data.gov.uk/api/action/package_search?q=fish");
+    request.open("GET", `https://data.gov.uk/api/action/package_search?q=${searchTerms}`);
     request.send();
     request.onload = () => {
         console.log(request);
         if (request.status == 200) {
-            console.log(JSON.parse(request.response));
+            apiResponse = JSON.parse(request.response);
+            console.log(apiResponse);
+
+            //testing javascript json
+            console.log(apiResponse.success);
+            console.log(apiResponse.result.results[0].resources[0].format);
+
+            //very roundabout way to filter data types.
+            //may change in the future
+            //geographical data is strangely formatted in the data.gov.uk Json so we will skip this for now.
+            for (var i = 0; i < apiResponse.result.results.length; i++) {
+                for (var j = 0; i < apiResponse.result.results[i].resources.length; i++) {
+                    if (apiResponse.result.results[i].resources[j] === "CSV"){
+
+                    }
+                }
+            }
+
         } else {
             console.log(`error ${request.status} ${request.statusText}`);
         }
     }
-
-
-
+    
     /*
     //run python script to query data.gov.uk api
     let {PythonShell} = require('python-shell');

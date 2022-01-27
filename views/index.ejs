@@ -27,6 +27,8 @@
                 <label for="dataCSV">CSV (Comma Separated Values)</label><br>
                 <input type="radio" id="dataGEO" name="dataType" value="GEO">
                 <label for="dataGEO">Geographical</label><br>
+                <input type="radio" id="dataALL" name="dataType" value="ALL">
+                <label for="dataALL">Show All</label>
                 <input type="submit" value="Submit">
             </form>
         </div>
@@ -36,7 +38,11 @@
 
         <div id="searchReturns">
             <!-- Displays search returns in table format -->
-
+            <table>
+                <tr>
+                    <th>Results</th>
+                </tr>
+            </table>
 
         </div>
 
