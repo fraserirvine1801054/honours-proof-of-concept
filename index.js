@@ -38,9 +38,19 @@ app.post('/search', function(req,res){
     var searchTerms = req.body.searchTerms;
     var dataType = req.body.dataType;
 
-    //prepare AJAX request
-    
-
+    //AJAX test
+    var XMLHttpRequest = require('xhr2');
+    let request = new XMLHttpRequest();
+    request.open("GET", "https://data.gov.uk/api/action/package_search?q=fish");
+    request.send();
+    request.onload = () => {
+        console.log(request);
+        if (request.status == 200) {
+            console.log(JSON.parse(request.response));
+        } else {
+            console.log(`error ${request.status} ${request.statusText}`);
+        }
+    }
 
 
 
