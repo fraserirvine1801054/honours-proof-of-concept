@@ -34,6 +34,17 @@ app.post('/search', function(req,res){
     console.log("search has been performed");
     console.log(req.body);
     
+    //extract object into individual strings
+    var searchTerms = req.body.searchTerms;
+    var dataType = req.body.dataType;
+
+    //prepare AJAX request
+    
+
+
+
+
+    /*
     //run python script to query data.gov.uk api
     let {PythonShell} = require('python-shell');
 
@@ -49,6 +60,7 @@ app.post('/search', function(req,res){
         if (err) throw err;
         console.log('results: %j', results);
     });
+    */
 
     /*
     pyshell.on('message', function(message){
