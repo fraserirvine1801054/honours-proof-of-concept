@@ -30,7 +30,7 @@ app.get('/', function(req,res){
     res.render('index.ejs', {results : results});
 });
 
-//get query
+//get query (unused)
 /*
 app.get('/search', function(req,res){
     var queryKeywords = req.query.searchTerms;
@@ -87,7 +87,7 @@ app.post('/search', function(req,res){
                                 var myObj = {
                                     "title" : `Title: ${apiResponse.result.results[i].title}`,
                                     "date_created" : `Date Created: ${apiResponse.result.results[i].metadata_created}`,
-                                    "date_modified" : `Date Modified: ${apiResponse.result.results[i].metadata_modified}`,
+                                    "date_modified" : `Last Modified: ${apiResponse.result.results[i].metadata_modified}`,
                                     "licence" : `Licence: ${apiResponse.result.results[i].license_title}`,
                                     "data_type" : `Data Type: CSV`,
                                     "data_url" : `Data URL: ${apiResponse.result.results[i].resources[j].url}`
@@ -116,7 +116,7 @@ app.post('/search', function(req,res){
                             var myObj = {
                                 "title" : `Title: ${apiResponse.result.results[i].title}`,
                                 "date_created" : `Date Created: ${apiResponse.result.results[i].metadata_created}`,
-                                "date_modified" : `Date Modified: ${apiResponse.result.results[i].metadata_modified}`,
+                                "date_modified" : `Last Modified: ${apiResponse.result.results[i].metadata_modified}`,
                                 "licence" : `Licence: ${apiResponse.result.results[i].license_title}`,
                                 "data_type" : `Data Type: ${jsonFormatValue}`,
                                 "data_url" : `Data URL: ${apiResponse.result.results[i].resources[j].url}`
